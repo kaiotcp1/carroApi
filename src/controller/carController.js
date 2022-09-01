@@ -27,7 +27,7 @@ const carController = {
                 result: car
             })
         } catch (error) {
-            res.status(400).json({ error });
+            res.status(404).json({ msg: "Car not found !!!" });
         };
     },
 
@@ -37,7 +37,6 @@ const carController = {
         if(error){return res.status(400).send(error.message)}
 
         const selectedCar = await Car.findOne({model: req.body.model});
-        console.log(selectedCar)
         if (selectedCar) return res.status(400).json({ msg: "Car already exists" });
 
         const car = new Car({
